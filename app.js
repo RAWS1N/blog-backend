@@ -3,6 +3,9 @@ import express from 'express'
 import dotenv from 'dotenv'
 import cors from 'cors'
 
+dotenv.config({
+  path : './config/config.env'
+})
 
 
 
@@ -16,22 +19,10 @@ import { ErrorMiddleware } from './middlewares/ErrorMiddleware.js'
 
 
 
-dotenv.config({
-  path : './config/config.env'
-})
-
-
-
-// cloudinary.config({
-//   cloud_name: process.env.cloudName,
-//   api_key: process.env.apiKey,
-//   api_secret: process.env.apiSecret,
-// });
-
 export const app = express()
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL,
+    origin:process.env.FRONTEND_URL,
         methods: ["GET", "POST", "PUT", "DELETE"],
         credentials: true,
       })

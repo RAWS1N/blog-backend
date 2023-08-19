@@ -2,6 +2,11 @@ import {app} from './app.js'
 import { dbConnect } from './config/dbConnect.js'
 import {Server} from 'socket.io'
 import cloudinary from "cloudinary";
+import dotenv from 'dotenv'
+
+dotenv.config({
+  path : './config/config.env'
+})
 
 cloudinary.config({
   cloud_name: process.env.cloudName,
@@ -11,18 +16,18 @@ cloudinary.config({
 
 dbConnect()
 
+
+
 const server = app.listen(process.env.PORT,() => {
     console.log(`server is listening on port:${process.env.PORT}`)
 })
-
-
 
 const io = new Server(server, {
     pingTimeout:1000*60,
     allowEIO3: true,
   cors: {
-    origin: process.env.frontend_url,
-    methods: ["get", "put", "post", "delete"],
+    origin: process.env.FRONTEND_URL,
+    methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   },
   });
