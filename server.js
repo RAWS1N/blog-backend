@@ -1,7 +1,13 @@
 import {app} from './app.js'
 import { dbConnect } from './config/dbConnect.js'
 import {Server} from 'socket.io'
+import cloudinary from "cloudinary";
 
+cloudinary.config({
+  cloud_name: process.env.cloudName,
+  api_key: process.env.apiKey,
+  api_secret: process.env.apiSecret,
+});
 
 dbConnect()
 

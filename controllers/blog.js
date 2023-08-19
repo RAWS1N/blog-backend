@@ -57,6 +57,7 @@ export const deleteBlogById = async (req, res, next) => {
       .status(200)
       .json({ success: true, message: "Blog Deleted Successfully" });
   } catch (e) {
+    console.log(e)
     return next(new ErrorHandler("", e.message));
   }
 };

@@ -2,13 +2,7 @@ import cookieParser from 'cookie-parser'
 import express from 'express'
 import dotenv from 'dotenv'
 import cors from 'cors'
-import cloudinary from "cloudinary";
 
-cloudinary.config({
-  cloud_name: "dharmic-chaton",
-  api_key: "599893695357234",
-  api_secret: "N8Tgvwb4V87DjGRq9Cr73sPvghE",
-});
 
 
 
