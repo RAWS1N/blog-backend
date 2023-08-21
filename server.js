@@ -25,11 +25,11 @@ const server = app.listen(process.env.PORT,() => {
 const io = new Server(server, {
     pingTimeout:1000*60,
     allowEIO3: true,
-  cors: {
-    origin: process.env.FRONTEND_URL,
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
-  },
+  // cors: {
+  //   origin: process.env.FRONTEND_URL,
+  //   methods: ["GET", "POST", "PUT", "DELETE"],
+  //   credentials: true,
+  // },
   });
   
   
