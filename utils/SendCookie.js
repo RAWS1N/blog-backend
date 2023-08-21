@@ -5,7 +5,7 @@ const sendCookie = async (res, user, message, statusCode = 200) => {
   const cookieOptions = {
     httpOnly: true,
     maxAge: 1000*60*60*168,
-    sameSite: process.env.NODE_ENV === 'development'? "lax" :"None",
+    sameSite: process.env.NODE_ENV === 'development'? "lax" :"none",
     secure: process.env.NODE_ENV === 'development' ? false : true,
   }
   res

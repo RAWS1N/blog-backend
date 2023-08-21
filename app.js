@@ -22,7 +22,7 @@ import { ErrorMiddleware } from './middlewares/ErrorMiddleware.js'
 export const app = express()
 app.use("*",
   cors({
-    origin:process.env.FRONTEND_URL,
+    origin:true,
         methods: ["GET", "POST", "PUT", "DELETE"],
         credentials: true,
       })
