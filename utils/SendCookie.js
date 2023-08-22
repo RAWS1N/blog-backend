@@ -5,8 +5,8 @@ const sendCookie = async (res, user, message, statusCode = 200) => {
   const cookieOptions = {
     httpOnly: true,
     maxAge: 1000*60*60*168,
-    sameSite:"none",
-    secure: false,
+    // sameSite:"none",
+    secure: true,
   }
   res
     .status(statusCode)

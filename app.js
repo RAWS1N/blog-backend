@@ -20,8 +20,8 @@ import { ErrorMiddleware } from './middlewares/ErrorMiddleware.js'
 
 
 export const app = express()
-app.set("trust proxy",1)
 app.use(cookieParser())
+app.set("trust proxy",1)
 app.use(cors({
     origin:process.env.FRONTEND_URL,
         methods: ["GET", "POST", "PUT", "DELETE"],
