@@ -2,6 +2,7 @@ import User from "../models/User.js";
 import bcrypt from "bcrypt";
 import sendCookie  from "../utils/SendCookie.js";
 import {ErrorHandler} from "../middlewares/ErrorMiddleware.js";
+import generateToken from "../utils/generateToken.js";
 
 
 export const getAllUser = async (req, res, next) => {
@@ -33,8 +34,16 @@ export const CreateUser = async (req, res, next) => {
         picture,
         password: hashedPassword,
       });
-      const message = "User Registered Successfully";
-      sendCookie(req,res, newUser, message, 201);
+      // const message = "User Registered Successfully";
+      // sendCookie(req,res, newUser, message, 201);
+      res.status(200).json({
+        _id : user._id,
+        name : user.name,
+        email : user.email,
+        picture : user.picture,
+        notification:user.notification,
+        token : generateToken(user._id)
+    })
     }
   } catch (error) {
     return next(new ErrorHandler('',error.message));
@@ -49,7 +58,14 @@ export const loginUser = async (req, res, next) => {
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return next(new ErrorHandler("Invalid Credentials", 404));
     const message = "Welcome Back" + " " + user.name;
-    await sendCookie(req,res, user, message);
+    // await sendCookie(req,res, user, message);
+    res.status(200).json({
+      _id : user._id,
+      name : user.name,
+      email : user.email,
+      picture : user.picture,
+      token : generateToken(user._id)
+  })
   } catch (err) {
     console.log(err)
     return next(new ErrorHandler(400,"Error on user sign in"))
