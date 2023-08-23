@@ -5,9 +5,13 @@ const sendCookie = async (res, user, message, statusCode = 200) => {
   const cookieOptions = {
     httpOnly: true,
     maxAge: 1000*60*60*168,
-    sameSite:"Lax",
+    sameSite:"None",
     secure: true,
+    path : "/"
   }
+
+  res.set("Access-Control-Allow-Origin",req.headers.origin)
+  res.set("Access-Control-Allow-Credentials","true")
   res
     .status(statusCode)
     .cookie("token", token,cookieOptions)
