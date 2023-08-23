@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 
-const sendCookie = async (res, user, message, statusCode = 200) => {
+const sendCookie = async (req,res, user, message, statusCode = 200) => {
   const token = await jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
   const cookieOptions = {
     httpOnly: true,

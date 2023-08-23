@@ -34,7 +34,7 @@ export const CreateUser = async (req, res, next) => {
         password: hashedPassword,
       });
       const message = "User Registered Successfully";
-      sendCookie(res, newUser, message, 201);
+      sendCookie(req,res, newUser, message, 201);
     }
   } catch (error) {
     return next(new ErrorHandler('',error.message));
@@ -49,8 +49,9 @@ export const loginUser = async (req, res, next) => {
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return next(new ErrorHandler("Invalid Credentials", 404));
     const message = "Welcome Back" + " " + user.name;
-    await sendCookie(res, user, message);
+    await sendCookie(req,res, user, message);
   } catch (err) {
+    console.log(err)
     return next(new ErrorHandler(400,"Error on user sign in"))
   }
 };
